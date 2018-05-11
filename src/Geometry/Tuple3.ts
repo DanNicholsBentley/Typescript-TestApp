@@ -37,5 +37,9 @@ export class Tuple3 {
         this.z = z;
     }
 
-
+    SetXYZ(x: number, y:number, z: number) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
 }
