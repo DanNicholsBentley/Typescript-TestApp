@@ -1,4 +1,4 @@
-export class Tuple3 {
+export abstract class Tuple3 {
     private x: number = 0;
     private y: number = 0;
     private z: number = 0;
