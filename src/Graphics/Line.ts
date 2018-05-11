@@ -11,6 +11,11 @@ export class Line extends GraphicalElement {
         this.start = start;
         this.end = end;
     }
+
+    Clone() {
+        return new Line(this.start, this.end);
+    }
+
     
     get Start() {
         return this.start;
@@ -37,5 +42,10 @@ export class Line extends GraphicalElement {
 
     get Length() {
         return this.start.Distance(this.end);
+    }
+
+    Offset(x: number, y: number, z: number) {
+        this.start = this.start.Offset(x,y,z);
+        this.end = this.end.Offset(x,y,z);
     }
 }

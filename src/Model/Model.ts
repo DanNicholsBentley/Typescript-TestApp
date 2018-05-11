@@ -10,10 +10,18 @@ export class Model {
         this.name = name;
     }
 
-   Print() {
-        return `${this.name}: ${JSON.stringify(this, undefined, 2)}`;
+    Clone(name: string) {
+        let model = new Model(name);
+        for(let comp of this.components) {
+            model.components.push(comp.Clone());
+        }
+
+        return model;
     }
 
+    Print() {
+        return `${this.name}: ${JSON.stringify(this, undefined, 2)}`;
+    }
 
     get Id() {
         return this.id;
@@ -31,4 +39,23 @@ export class Model {
         this.components.push(comp);
     }
 
+    GetComponentById(id: string) : ModelComponent | null {
+        for(let comp of this.components) {
+            if(comp.Id == id) {
+                return comp;
+            }
+        }
+
+        return null;
+    }
+
+    GetComponentByName(name: string) : ModelComponent | null {
+        for(let comp of this.components) {
+            if(comp.Name == name) {
+                return comp;
+            }
+        }
+
+        return null;
+    }
 }

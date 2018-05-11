@@ -12,6 +12,9 @@ export abstract class GraphicalElement {
 
     }
 
+    abstract Clone();
+    abstract Offset(x: number, y: number, z: number);
+
     get Id() {
         return this.id.toString();
     }

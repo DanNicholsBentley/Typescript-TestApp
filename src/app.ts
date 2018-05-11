@@ -43,4 +43,18 @@ console.log(comp2.Print());
 let model = new Model("MyModel");
 model.AddModelComponent(comp1);
 model.AddModelComponent(comp2);
+
+let model2 = model.Clone("ClonedModel");
+
+
+let comp3 = comp1.Clone("comp3");
+comp3.Offset(0,5,0);
+model.AddModelComponent(comp3);
+
+let comp = model.GetComponentByName("comp2");
+if(comp) {
+    comp.Offset(0, -10, 0);
+}
+
 console.log(model.Print());
+console.log(model2.Print());

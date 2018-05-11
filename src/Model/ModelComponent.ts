@@ -10,6 +10,16 @@ export class ModelComponent {
         this.name = name;
     }
 
+    Clone(name?: string) {
+        let modelName = name ? name : this.name;
+        let comp = new ModelComponent(modelName);
+        for(let elem of this.graphics) {
+            comp.Graphics.push(elem.Clone());
+        }
+
+        return comp;
+    }
+
     Print() {
         return `${this.name}: ${JSON.stringify(this)}`;
     }
@@ -29,6 +39,12 @@ export class ModelComponent {
 
     AddGraphicalElement(elem: GraphicalElement) {
         this.graphics.push(elem);
+    }
+
+    Offset(x: number, y: number, z:number) {
+        for(let elem of this.graphics) {
+            elem.Offset(x,y,z);
+        }
     }
 
 }

@@ -17,6 +17,10 @@ export class Circle extends GraphicalElement {
             this.normal = normal;
         }
     }
+
+    Clone() {
+        return new Circle(this.origin, this.radius, this.normal);
+    }
     
     get Origin() {
         return this.origin;
@@ -49,4 +53,9 @@ export class Circle extends GraphicalElement {
     Area() {
         return Math.PI * this.radius * this.radius;
     }
+
+    Offset(x: number, y: number, z: number) {
+        this.origin = this.origin.Offset(x,y,z);
+    }
+
 }
