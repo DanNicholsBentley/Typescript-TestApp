@@ -1,12 +1,12 @@
-import { Tuple3 } from "./Tuple3";
+import { Coordinate } from "./Coordinate";
 
-export class Point extends Tuple3 {
+export class Point extends Coordinate {
 
     constructor(x:number = 0, y:number = 0, z:number = 0) {
         super(x,y,z);
     }
 
-    Clone(pt: Tuple3|Point) : Point {
+    Clone(pt: Coordinate|Point) : Point {
         return new Point(pt.X, pt.Y, pt.Z);
     }
 

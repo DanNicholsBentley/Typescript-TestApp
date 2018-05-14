@@ -1,4 +1,4 @@
-import { Tuple3 } from './Geometry/Tuple3'
+import { Coordinate } from './Geometry/Coordinate'
 import { Point } from './Geometry/Point'
 import { Vector } from './Geometry/Vector';
 import { Line } from './Graphics/Line';
@@ -7,9 +7,9 @@ import { Circle } from './Graphics/Circle';
 import { ModelComponent } from './Model/ModelComponent';
 import { Model } from './Model/Model';
 
-let t100: Tuple3 = new Tuple3(100, 200, 300);
+let t100: Coordinate = new Coordinate(100, 200, 300);
 let p100: Point = new Point().Clone(t100);
-
+console.log(p100.Print("p100:"));
 
 let p1: Point = new Point(1,2,3);
 console.log(p1.Print("p1:"));

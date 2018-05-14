@@ -1,4 +1,4 @@
-export class Tuple3 {
+export class Coordinate {
     private x: number = 0;
     private y: number = 0;
     private z: number = 0;
@@ -43,8 +43,8 @@ export class Tuple3 {
         this.z = z;
     }
 
-    Offset(x: number, y:number, z: number) : Tuple3 {
-        return new Tuple3(this.x + x, this.y + y, this.z + z);
+    Offset(x: number, y:number, z: number) : Coordinate {
+        return new Coordinate(this.x + x, this.y + y, this.z + z);
     }
 
     OffsetInPlace(x: number, y:number, z: number) {
@@ -53,8 +53,8 @@ export class Tuple3 {
         this.z += z;
     }
 
-    Scale(sf: number) : Tuple3 {
-        return new Tuple3(this.x * sf,this.y * sf, this.z * sf)
+    Scale(sf: number) : Coordinate {
+        return new Coordinate(this.x * sf,this.y * sf, this.z * sf)
     }
 
     ScaleInPlace(sf: number) {
@@ -63,26 +63,26 @@ export class Tuple3 {
         this.z *= sf;
     }
 
-    Add(t2: Tuple3) : Tuple3 {
-        return new Tuple3(this.x + t2.x, this.y + t2.y, this.z + t2.z);
+    Add(coord: Coordinate) : Coordinate {
+        return new Coordinate(this.x + coord.x, this.y + coord.y, this.z + coord.z);
     }
 
-    AddInPlace(tup: Tuple3) {
-        this.OffsetInPlace(tup.x, tup.y, tup.z);
+    AddInPlace(coord: Coordinate) {
+        this.OffsetInPlace(coord.x, coord.y, coord.z);
     }
 
-    Subtract(tup: Tuple3) : Tuple3 {
-        return new Tuple3(this.x - tup.x, this.y - tup.y, this.z - tup.z);
+    Subtract(coord: Coordinate) : Coordinate {
+        return new Coordinate(this.x - coord.x, this.y - coord.y, this.z - coord.z);
     }
 
-    SubtractInPlace(tup: Tuple3) {
-        this.OffsetInPlace(tup.x, tup.y, tup.z);
+    SubtractInPlace(coord: Coordinate) {
+        this.OffsetInPlace(coord.x, coord.y, coord.z);
     }
 
-    Distance(tup: Tuple3) {
-        let dx = tup.X - this.X;
-        let dy = tup.Y - this.Y;
-        let dz = tup.Z - this.Z;
+    Distance(coord: Coordinate) {
+        let dx = coord.X - this.X;
+        let dy = coord.Y - this.Y;
+        let dz = coord.Z - this.Z;
 
         return Math.sqrt(dx*dx + dy*dy + dz*dz);
     }

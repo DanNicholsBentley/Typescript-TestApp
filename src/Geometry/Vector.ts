@@ -1,7 +1,7 @@
 import {Constants} from './Constants';
-import {Tuple3} from './Tuple3';
+import {Coordinate} from './Coordinate';
 
-export class Vector extends Tuple3 {
+export class Vector extends Coordinate {
 
     constructor(x:number = 0, y:number = 0, z:number = 0) {
         super(x,y,z);
