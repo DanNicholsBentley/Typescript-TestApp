@@ -6,28 +6,24 @@ export class Point extends Tuple3 {
         super(x,y,z);
     }
 
-    Offset(x:number = 0, y:number = 0, z:number = 0) {
-        return new Point(this.X + x, this.Y + y, this.Z + z);
+    Clone(pt: Tuple3|Point) : Point {
+        return new Point(pt.X, pt.Y, pt.Z);
     }
 
-    Add(t:Point) {
-        return new Point(this.X + t.X, this.Y + t.Y, this.Z + t.Z);
+    Offset(x:number = 0, y:number = 0, z:number = 0) : Point {
+        return this.Clone(super.Offset(x,y,z));
     }
 
-    Subtract(t:Point) {
-        return new Point(this.X - t.X, this.Y - t.Y, this.Z - t.Z);
+    Add(pt:Point) : Point {
+        return this.Clone(super.Add(pt));
     }
 
-    Scale(sf:number) {
-        return new Point(this.X * sf, this.Y * sf, this.Z * sf);
+    Subtract(pt:Point) : Point {
+        return this.Clone(super.Subtract(pt));
     }
 
-
-    Distance(pt: Point) {
-        let dx = pt.X - this.X;
-        let dy = pt.Y - this.Y;
-        let dz = pt.Z - this.Z;
-
-        return Math.sqrt(dx*dx + dy*dy + dz*dz);
+    Scale(sf:number) : Point {
+        return this.Clone(super.Scale(sf));
     }
+
 }

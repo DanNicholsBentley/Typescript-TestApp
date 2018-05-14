@@ -12,7 +12,7 @@ export class Line extends GraphicalElement {
         this.end = end;
     }
 
-    Clone() {
+    Clone() : Line {
         return new Line(this.start, this.end);
     }
 

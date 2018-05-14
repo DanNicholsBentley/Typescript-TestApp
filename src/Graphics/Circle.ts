@@ -18,7 +18,7 @@ export class Circle extends GraphicalElement {
         }
     }
 
-    Clone() {
+    Clone() : Circle {
         return new Circle(this.origin, this.radius, this.normal);
     }
     

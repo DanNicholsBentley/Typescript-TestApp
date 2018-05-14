@@ -1,3 +1,4 @@
+import { Tuple3 } from './Geometry/Tuple3'
 import { Point } from './Geometry/Point'
 import { Vector } from './Geometry/Vector';
 import { Line } from './Graphics/Line';
@@ -6,10 +7,15 @@ import { Circle } from './Graphics/Circle';
 import { ModelComponent } from './Model/ModelComponent';
 import { Model } from './Model/Model';
 
+let t100: Tuple3 = new Tuple3(100, 200, 300);
+let p100: Point = new Point().Clone(t100);
+
+
 let p1: Point = new Point(1,2,3);
 console.log(p1.Print("p1:"));
+p1.OffsetInPlace(10,10,10);
 
-let p2: Point = <Point>p1.Offset(2,3,4);
+let p2: Point = p1.Offset(2,3,4);
 console.log(p2.Print("p2:"));
 
 let p3: Point = p2.Add(p1);
