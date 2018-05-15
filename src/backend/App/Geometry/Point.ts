@@ -6,24 +6,28 @@ export class Point extends Coordinate {
         super(x,y,z);
     }
 
-    Clone(pt: Coordinate|Point) : Point {
+    Clone() : Point {
+        return new Point(this.X, this.Y, this.Z);
+    }
+
+    Copy(pt: Coordinate|Point) : Point {
         return new Point(pt.X, pt.Y, pt.Z);
     }
 
     Offset(x:number = 0, y:number = 0, z:number = 0) : Point {
-        return this.Clone(super.Offset(x,y,z));
+        return this.Copy(super.Offset(x,y,z));
     }
 
     Add(pt:Point) : Point {
-        return this.Clone(super.Add(pt));
+        return this.Copy(super.Add(pt));
     }
 
     Subtract(pt:Point) : Point {
-        return this.Clone(super.Subtract(pt));
+        return this.Copy(super.Subtract(pt));
     }
 
     Scale(sf:number) : Point {
-        return this.Clone(super.Scale(sf));
+        return this.Copy(super.Scale(sf));
     }
 
 }

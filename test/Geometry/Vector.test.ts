@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import 'mocha';
 
-import {Constants} from '../../src/Geometry/Constants';
-import {Vector} from '../../src/Geometry/Vector';
+import {Constants} from '../../src/backend/App/Geometry/Constants';
+import {Vector} from '../../src/backend/App/Geometry/Vector';
 
 describe('Vector', () => {
     describe('Default Constructor', () => {

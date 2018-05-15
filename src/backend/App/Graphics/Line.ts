@@ -16,6 +16,9 @@ export class Line extends GraphicalElement {
         return new Line(this.start, this.end);
     }
 
+    Copy(line: Line) : Line {
+        return new Line(line.start, line.end);
+    }
     
     get Start() {
         return this.start;

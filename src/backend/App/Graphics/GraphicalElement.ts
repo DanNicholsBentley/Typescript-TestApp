@@ -13,6 +13,7 @@ export abstract class GraphicalElement {
     }
 
     abstract Clone() : GraphicalElement;
+    abstract Copy(elem: GraphicalElement) : GraphicalElement;
     abstract Offset(x: number, y: number, z: number) : void;
 
     get Id() {

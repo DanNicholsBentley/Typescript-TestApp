@@ -1,8 +1,10 @@
 import { Guid } from 'guid-typescript';
+import { Utilities } from './Utilities';
 import { ModelComponent } from './ModelComponent';
 
 export class Model {
-    private id: string = Guid.create().toString();
+    private id: number = Utilities.NextId();
+    private guid: string = Guid.create().toString();
     private name: string;
     private components: Array<ModelComponent> = new Array<ModelComponent>();
 
@@ -27,6 +29,10 @@ export class Model {
         return this.id;
     }
 
+    get Guid() {
+        return this.guid;
+    }
+
     get Name() {
         return this.name;
     }
@@ -39,23 +45,18 @@ export class Model {
         this.components.push(comp);
     }
 
-    GetComponentById(id: string) : ModelComponent | null {
-        for(let comp of this.components) {
-            if(comp.Id == id) {
-                return comp;
-            }
-        }
-
-        return null;
+    GetComponentById(id: number) : ModelComponent | undefined {
+        return this.components.find(comp => comp.Id == id);
     }
 
-    GetComponentByName(name: string) : ModelComponent | null {
-        for(let comp of this.components) {
-            if(comp.Name == name) {
-                return comp;
-            }
-        }
-
-        return null;
+    GetComponentByName(name: string) : ModelComponent | undefined {
+        return this.components.find(comp => comp.Name === name);
     }
+
+    Offset(x:number, y:number, z:number) : void {
+        for(let comp of this.components) {
+            comp.Offset(x,y,z);
+        }
+    }
+
 }

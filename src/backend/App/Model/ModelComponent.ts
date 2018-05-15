@@ -1,8 +1,10 @@
 import {Guid} from 'guid-typescript';
+import { Utilities } from './Utilities';
 import {GraphicalElement} from '../Graphics/GraphicalElement';
 
 export class ModelComponent {
-    private id: string = Guid.create().toString();
+    private id: number = Utilities.NextId();
+    private guid: string = Guid.create().toString();
     private name: string;
     private graphics: Array<GraphicalElement> = new Array<GraphicalElement>();
 
@@ -27,6 +29,10 @@ export class ModelComponent {
 
     get Id() {
         return this.id;
+    }
+
+    get Guid() {
+        return this.guid;
     }
 
     get Name() {
