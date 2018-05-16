@@ -1,38 +1,25 @@
 import express from 'express';
-import {ModelController} from './ModelController';
+import {ModelRoutes} from './ModelRoutes';
 
 export class Api {
 
-    static Initialize() {
+    static Start() {
         let api = express();
-        let modelController = new ModelController();
+        let modelRoutes = new ModelRoutes();
 
-        // Add get routes
-        api.get('/', function (request, response) {
+        api.get('/',  (request, response) => {
             response.send('Application API');
         });
 
-        api.get('/api/model', function (request, response) {
-            response.json(modelController.getModel());
-        });
+        // Add routes
+        api.use('/api/model', modelRoutes.GetRoutes());
 
-        api.get('/api/model/components', function (request, response) {
-            response.json(modelController.getComponents());
-        });
-
-        api.get('/api/model/components/:idOrName', function (request, response) {
-            let param = request.params.idOrName;
-            if(isNaN(param)) {
-                response.json(modelController.getComponentByName(param));
-            }
-            else {
-                console.log("getComponentById");
-                response.json(modelController.getComponentById(param));
-            }
-            
-        });
-
-        api.listen(3000);
+        // ---------------------------------------------
+        // Run the server...
+        // ---------------------------------------------
+        api.set("port", process.env.PORT || 3000);
+        // tslint:disable-next-line:no-console
+        api.listen(api.get("port"), () => console.log("Open browser and navigate to http://localhost:" + api.get("port")));
 
     }
     

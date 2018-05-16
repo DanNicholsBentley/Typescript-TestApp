@@ -1,15 +1,18 @@
 import {Guid} from 'guid-typescript';
+import moment from 'moment';
 import { Utilities } from './Utilities';
 import {GraphicalElement} from '../Graphics/GraphicalElement';
 
 export class ModelComponent {
     private id: number = Utilities.NextId();
     private guid: string = Guid.create().toString();
+    private createdOn: string;
     private name: string;
     private graphics: Array<GraphicalElement> = new Array<GraphicalElement>();
 
     constructor(name: string) {
         this.name = name;
+        this.createdOn = moment().format('MMMM Do YYYY, h:mm:ss a');
     }
 
     Clone(name?: string) {
@@ -33,6 +36,10 @@ export class ModelComponent {
 
     get Guid() {
         return this.guid;
+    }
+
+    get CreatedOn () {
+        return this.createdOn;
     }
 
     get Name() {

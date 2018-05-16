@@ -1,27 +1,30 @@
-
-import { SampleModel } from './SampleModel';
-import { ModelComponent } from '../App/Model/ModelComponent';
+import { ModelRepository } from './ModelRepository';
 import { Model } from '../App/Model/Model';
+import { ModelComponent } from '../App/Model/ModelComponent';
 
 export class ModelController {
 
-    private model: Model = SampleModel.Create("Test Model 2");
+    modelRepository: ModelRepository;
+
+    constructor() {
+        this.modelRepository = new ModelRepository();
+    }
 
     getModel() : Model {
-        return this.model;
+        return this.modelRepository.GetModel();
     }
 
     getComponents() : Array<ModelComponent> {
-        return this.model.Components;
+        return this.modelRepository.GetComponents();
     }
 
     getComponentByName(name: string) : ModelComponent | undefined {
-        return this.model.GetComponentByName(name);
+        return this.modelRepository.GetComponentByName(name);
 
     }
 
     getComponentById(id: number) : ModelComponent | undefined {
-        return this.model.GetComponentById(id);
+        return this.modelRepository.GetComponentById(id);
 
     }
 }

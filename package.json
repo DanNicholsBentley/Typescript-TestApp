@@ -12,6 +12,7 @@
   "dependencies": {
     "express": "^4.16.3",
     "guid-typescript": "^1.0.7",
+    "moments": "0.0.2",
     "typescript": "^2.8.3"
   },
   "devDependencies": {
