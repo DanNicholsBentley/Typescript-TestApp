@@ -1,5 +1,7 @@
 import { Guid } from 'guid-typescript';
 import { Utilities } from './Utilities';
+import {Point} from '../Geometry/Point';
+import {IDrawMethodProps} from './IDrawMethodProps';
 import { ModelComponent } from './ModelComponent';
 
 export class Model {
@@ -41,7 +43,11 @@ export class Model {
         return this.components;
     }
 
-    AddModelComponent(comp: ModelComponent) {
+    AddComponent(name: string, drawMethod: string, props: IDrawMethodProps, origin: Point) : void {
+        this.components.push(new ModelComponent(name, drawMethod, props, origin));
+    }
+
+    AddModelComponent(comp: ModelComponent) :void {
         this.components.push(comp);
     }
 

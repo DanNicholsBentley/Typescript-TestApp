@@ -1,0 +1,17 @@
+{
+    "extends": "../../tsconfig.json",
+    
+    "compilerOptions": {
+        "target": "es6",
+        "module": "system", 
+        "outDir": "../../dist/frontend",                      /* Redirect output structure to the directory. */
+
+    },
+    "include": [
+         "./**/*"
+    ],
+    "exclude": [
+        "../../node_modules",
+    ]
+  
+}
