@@ -1,6 +1,6 @@
 import {Response, Request, Router} from 'express';
 import {ModelController} from './ModelController';
-import { Point } from '../App/Geometry/Point';
+import { Coordinate } from '../App/Model/Coordinate';
 
 export class ModelRoutes {
 
@@ -44,7 +44,7 @@ export class ModelRoutes {
             let drawMethod = request.body.drawMethod;
             //let props = request.body.props;
             let props = request.body.props;  // {len: 200, od: 12};
-            let origin = new Point(request.body.origin.x, request.body.origin.y, request.body.origin.z);
+            let origin = new Coordinate(request.body.origin.x, request.body.origin.y, request.body.origin.z, request.body.origin.units);
 
             response.json(this.modelController.AddComponent(name, drawMethod, props, origin));
 

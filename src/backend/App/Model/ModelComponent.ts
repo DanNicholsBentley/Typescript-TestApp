@@ -1,10 +1,12 @@
+import * as _ from 'lodash';
 import {Guid} from 'guid-typescript';
 import moment from 'moment';
 import { Utilities } from './Utilities';
-import {Point} from '../Geometry/Point';
+import {Coordinate} from './Coordinate';
 import {GraphicalElement} from '../Graphics/GraphicalElement';
 import {ExecuteDrawMethod} from './DrawMethods';
 import {IDrawMethodProps} from './IDrawMethodProps';
+import * as ModelUnits from './ModelUnits';
 
 export class ModelComponent {
     private id: number = Utilities.NextId();
@@ -13,7 +15,7 @@ export class ModelComponent {
     private name: string;
     private drawMethod: string;
     private props: IDrawMethodProps;
-    private origin: Point;
+    private origin: Coordinate;
     private graphics: Array<GraphicalElement> = new Array<GraphicalElement>();
 
     // constructor(name: string) {
@@ -21,13 +23,13 @@ export class ModelComponent {
     //     this.createdOn = moment().format('MMMM Do YYYY, h:mm:ss a');
     // }
 
-    constructor(name: string, drawMethod: string, props: IDrawMethodProps, origin: Point) {
+    constructor(name: string, drawMethod: string, props: IDrawMethodProps, origin: Coordinate) {
         this.name = name;
         this.drawMethod = drawMethod;
-        this.props = props;
+        this.props = ModelUnits.PropsToModelUnits(_.cloneDeep(props));
         this.origin = origin;
-        this.Graphics = ExecuteDrawMethod(drawMethod, props);
-        this.Offset(origin.X, origin.Y, origin.Z);
+        this.Graphics = ExecuteDrawMethod(drawMethod, this.props);
+        this.Offset(this.origin.X, this.origin.Y, this.origin.Z);
         this.createdOn = moment().format('MMMM Do YYYY, h:mm:ss a');
     }
 
@@ -75,9 +77,13 @@ export class ModelComponent {
         this.graphics.push(elem);
     }
 
-    Offset(x: number, y: number, z:number) {
+    Offset(x: number, y: number, z:number, coordUnits: ModelUnits.UnitLength = ModelUnits.ModelUnitsLength) {
+        let mx = ModelUnits.LengthToModelUnits(x, coordUnits);
+        let my = ModelUnits.LengthToModelUnits(y, coordUnits);
+        let mz = ModelUnits.LengthToModelUnits(z, coordUnits);
+
         for(let elem of this.graphics) {
-            elem.Offset(x,y,z);
+            elem.Offset(mx, my, mz);
         }
     }
 

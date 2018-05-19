@@ -1,17 +1,25 @@
 import { Guid } from 'guid-typescript';
+import moment from 'moment';
 import { Utilities } from './Utilities';
-import {Point} from '../Geometry/Point';
+import {Coordinate} from './Coordinate';
 import {IDrawMethodProps} from './IDrawMethodProps';
 import { ModelComponent } from './ModelComponent';
+
+const Now = () =>  moment().format('MMMM Do YYYY, h:mm:ss a');
 
 export class Model {
     private id: number = Utilities.NextId();
     private guid: string = Guid.create().toString();
     private name: string;
+    private createdOn: string;
+    private modifiedOn: string;
     private components: Array<ModelComponent> = new Array<ModelComponent>();
+
 
     constructor(name: string) {
         this.name = name;
+        this.createdOn = Now();
+        this.modifiedOn = this.createdOn;
     }
 
     Clone(name: string) {
@@ -39,18 +47,29 @@ export class Model {
         return this.name;
     }
 
+    get CreatedOn () {
+        return this.createdOn;
+    }
+
+    get ModifedOn () {
+        return this.modifiedOn;
+    }
+
+
     get Components() {
         return this.components;
     }
 
-    AddComponent(name: string, drawMethod: string, props: IDrawMethodProps, origin: Point) : number {
-        let comp = new ModelComponent(name, drawMethod, props, origin)
-        this.components.push(comp);
+    AddComponent(name: string, drawMethod: string, props: IDrawMethodProps, origin: Coordinate) : number {
+
+        let comp = new ModelComponent(name, drawMethod, props, origin);
+        this.AddModelComponent(comp);
         return comp.Id;
     }
 
-    AddModelComponent(comp: ModelComponent) :void {
+    AddModelComponent(comp: ModelComponent) : void {
         this.components.push(comp);
+        this.modifiedOn = Now();
     }
 
     GetComponentById(id: number) : ModelComponent | undefined {
@@ -71,6 +90,7 @@ export class Model {
         let index: number = this.components.findIndex(comp => comp.Id == id);
         if(index >= 0) {
             this.components.splice(index, 1);
+            this.modifiedOn = Now();
             return true;
         }
         return false;
