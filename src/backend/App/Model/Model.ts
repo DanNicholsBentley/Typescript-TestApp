@@ -43,8 +43,10 @@ export class Model {
         return this.components;
     }
 
-    AddComponent(name: string, drawMethod: string, props: IDrawMethodProps, origin: Point) : void {
-        this.components.push(new ModelComponent(name, drawMethod, props, origin));
+    AddComponent(name: string, drawMethod: string, props: IDrawMethodProps, origin: Point) : number {
+        let comp = new ModelComponent(name, drawMethod, props, origin)
+        this.components.push(comp);
+        return comp.Id;
     }
 
     AddModelComponent(comp: ModelComponent) :void {
@@ -63,6 +65,16 @@ export class Model {
         for(let comp of this.components) {
             comp.Offset(x,y,z);
         }
+    }
+
+    DeleteComponent(id: number) : boolean {
+        let index: number = this.components.findIndex(comp => comp.Id == id);
+        if(index >= 0) {
+            this.components.splice(index, 1);
+            return true;
+        }
+        return false;
+        
     }
 
 }

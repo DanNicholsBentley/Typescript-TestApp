@@ -15,8 +15,8 @@ export class SampleModel {
         model.AddComponent("BV-1", "BallValve", {len: 50, od: 10, ballRadius: 6}, new Point(100, 50, 0));
         model.AddComponent("P-4", "Pipe", {len: 120, od: 8}, new Point(150,50,0));
 
-        model.AddComponent("P-5", "Pipe", {len: 40, od: 4}, new Point(10,80,0));
-        model.AddComponent("BV-2", "BallValve", {len: 25, od: 10}, new Point(50, 80, 0));
+        model.AddComponent("P-5", "Pipe", {len: 40, od: 4, extra: "Extra"}, new Point(10,80,0));
+        model.AddComponent("BV-2", "BallValve", {len: 25, od: 10, ballRadius: 4}, new Point(50, 80, 0));
         model.AddComponent("P-6", "Pipe",{len: 60, od: 4}, new Point(75,80,0));
 
         return model;

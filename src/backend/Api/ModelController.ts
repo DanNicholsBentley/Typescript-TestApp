@@ -1,6 +1,8 @@
 import { ModelRepository } from './ModelRepository';
 import { Model } from '../App/Model/Model';
 import { ModelComponent } from '../App/Model/ModelComponent';
+import { IDrawMethodProps } from '../App/Model/IDrawMethodProps';
+import { Point } from '../App/Geometry/Point';
 
 export class ModelController {
 
@@ -10,21 +12,28 @@ export class ModelController {
         this.modelRepository = new ModelRepository();
     }
 
-    getModel() : Model {
+    GetModel() : Model {
         return this.modelRepository.GetModel();
     }
 
-    getComponents() : Array<ModelComponent> {
+    GetComponents() : Array<ModelComponent> {
         return this.modelRepository.GetComponents();
     }
 
-    getComponentByName(name: string) : ModelComponent | undefined {
+    GetComponentByName(name: string) : ModelComponent | undefined {
         return this.modelRepository.GetComponentByName(name);
-
     }
 
-    getComponentById(id: number) : ModelComponent | undefined {
+    GetComponentById(id: number) : ModelComponent | undefined {
         return this.modelRepository.GetComponentById(id);
+    }
+
+    AddComponent(name: string, drawMethod: string, props: IDrawMethodProps, origin: Point) : number {
+        return this.modelRepository.AddComponent(name, drawMethod, props, origin);
+    }
+
+    DeleteComponent(id: number) : boolean {
+        return this.modelRepository.DeleteComponent(id);
 
     }
 }

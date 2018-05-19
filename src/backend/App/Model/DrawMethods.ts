@@ -4,16 +4,23 @@ import {GateValve, BallValve} from '../Shapes/Valves';
 import {IDrawMethodProps} from './IDrawMethodProps';
 
 export const ExecuteDrawMethod = (drawMethod: string, props: IDrawMethodProps) : Array<GraphicalElement>  => {
+    let graphics = new Array<GraphicalElement>();
     switch (drawMethod) {
         case 'Pipe':
-            return Pipe.Draw(props);
+            graphics = Pipe.Draw(props);
+            break;
         case 'GateValve':
-            return GateValve.Draw(props);
+            graphics =  GateValve.Draw(props);
+            break;
         case 'BallValve':
-            return BallValve.Draw(props);
+            graphics =  BallValve.Draw(props);
+            break;
         default:
-            return new Array<GraphicalElement>();
+            break;
+
     }
+
+    return graphics;
 
 
 

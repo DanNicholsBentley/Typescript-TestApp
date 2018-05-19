@@ -1,18 +1,24 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 import {ModelRoutes} from './ModelRoutes';
 
 export class Api {
 
     static Start() {
         let api = express();
-        let modelRoutes = new ModelRoutes();
+
+
+        api.use(bodyParser.json()); // support json encoded bodies
+        api.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
 
         api.get('/',  (request, response) => {
             response.send('Application API');
         });
 
-        // Add routes
-        api.use('/api/model', modelRoutes.GetRoutes());
+        // Add model routes
+        let modelRoutes = new ModelRoutes();
+        api.use('/api/model', modelRoutes.Routes());
 
         // ---------------------------------------------
         // Run the server...

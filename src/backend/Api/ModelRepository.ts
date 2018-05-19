@@ -1,27 +1,33 @@
-import moment from 'moment';
-import { SampleModel } from './SampleModel';
 import { ModelComponent } from '../App/Model/ModelComponent';
 import { Model } from '../App/Model/Model';
+import { ModelDb } from './ModelDb';
+import { IDrawMethodProps } from '../App/Model/IDrawMethodProps';
+import { Point } from '../App/Geometry/Point';
 
 export class ModelRepository {
 
-    private model: Model = SampleModel.Create("Test Model " + moment().format('MMMM Do YYYY, h:mm:ss a'));
-
     GetModel() : Model {
-        return this.model;
+        return ModelDb.GetModel();
     }
 
     GetComponents() : Array<ModelComponent> {
-        return this.model.Components;
+        return  ModelDb.GetModel().Components;
     }
 
     GetComponentByName(name: string) : ModelComponent | undefined {
-        return this.model.GetComponentByName(name);
-
+        return  ModelDb.GetModel().GetComponentByName(name);
     }
 
     GetComponentById(id: number) : ModelComponent | undefined {
-        return this.model.GetComponentById(id);
+        return  ModelDb.GetModel().GetComponentById(id);
+    }
 
+    AddComponent(name: string, drawMethod: string, props: IDrawMethodProps, origin: Point) : number {
+        return ModelDb.GetModel().AddComponent(name, drawMethod, props, origin);
+    }
+
+
+    DeleteComponent(id: number) : boolean {
+        return ModelDb.GetModel().DeleteComponent(id);
     }
 }
