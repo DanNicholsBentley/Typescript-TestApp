@@ -1,4 +1,4 @@
-import { Model } from '../App/Model/Model';
+import { Model } from '../../App/Model/Model';
 import { SampleModel } from './SampleModel';
 
 export class ModelDb {

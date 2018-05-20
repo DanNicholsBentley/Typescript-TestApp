@@ -1,8 +1,8 @@
-import { ModelComponent } from '../App/Model/ModelComponent';
-import { Model } from '../App/Model/Model';
+import { ModelComponent } from '../../App/Model/ModelComponent';
+import { Model } from '../../App/Model/Model';
 import { ModelDb } from './ModelDb';
-import { IDrawMethodProps } from '../App/Model/IDrawMethodProps';
-import { Point } from '../App/Geometry/Point';
+import { IDrawMethodProps } from '../../App/Model/IDrawMethodProps';
+import { Point } from '../../App/Geometry/Point';
 
 export class ModelRepository {
 

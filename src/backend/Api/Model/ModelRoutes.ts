@@ -1,6 +1,6 @@
 import {Response, Request, Router} from 'express';
 import {ModelController} from './ModelController';
-import { Coordinate } from '../App/Model/Coordinate';
+import { Coordinate } from '../../App/Model/Coordinate';
 
 export class ModelRoutes {
 

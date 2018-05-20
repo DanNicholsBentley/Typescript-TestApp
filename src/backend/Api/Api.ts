@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import {ModelRoutes} from './ModelRoutes';
+import {ModelRoutes} from './Model/ModelRoutes';
+import {CatalogRoutes} from './Catalog/CatalogRoutes';
 
 export class Api {
 
@@ -19,6 +20,10 @@ export class Api {
         // Add model routes
         let modelRoutes = new ModelRoutes();
         api.use('/api/model', modelRoutes.Routes());
+
+        // Add catalog routes
+        let catalogRoutes = new CatalogRoutes();
+        api.use('/api/catalog', catalogRoutes.Routes());
 
         // ---------------------------------------------
         // Run the server...
