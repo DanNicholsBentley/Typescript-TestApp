@@ -1,5 +1,5 @@
-import { Model } from '../../App/Model/Model';
-import { Coordinate } from '../../App/Model/Coordinate';
+import { Model } from './App/Model/Model';
+import { Coordinate } from './App/Model/Coordinate';
 
 export class SampleModel {
 

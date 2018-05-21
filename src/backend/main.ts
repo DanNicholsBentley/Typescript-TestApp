@@ -1,12 +1,16 @@
 import { Api } from './Api/Api';
-import { ModelDb } from './Api/Model/ModelDb';
-import { CatalogDb } from './Api/Catalog/CatalogDb';
+import {CatalogDb} from './Api/Catalog/CatalogDb';
+import {ModelDb} from './Api/Model/ModelDb';
 
-// Create the in-memory Sample Model
-ModelDb.CreateModel();
+import { SampleModel } from './SampleModel';
+import { SampleCatalog } from './SampleCatalog';
 
 // Create the in-memory Catalog data
-CatalogDb.CreateCatalog();
+CatalogDb.SetCatalog(SampleCatalog.Create("Test Catalog"));
+
+// Create the in-memory Sample Model
+ModelDb.SetModel(SampleModel.Create("Test Model"));
+
 
 Api.Start();
 
